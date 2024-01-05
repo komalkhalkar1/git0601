@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="demo"></div> 
+
+   <script>
+desplayCD(0);
+    function desplayCD(i){
+        var z1 = new XMLHttpRequest();
+        z1.onreadystatechange=function(){
+            if(this.readyState==4 && this.status==200){
+myFunction(this,i)
+            }
+        }
+        z1.open("GET","CD.xml",true);
+        z1.send();
+    }
+    function myFunction(xml,i){
+        var xmlDoc=xml.responseXML;
+       x=xmlDoc.getElementsByTagName("CD");
+       
+       document.getElementById("demo").innerHTML="Artist: " +
+
+       x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue + "<br> Title:" +
+
+       x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue + "<br> Year:" +
+
+       x[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue ;
+    }
+   </script>
+</body>
+</html>
